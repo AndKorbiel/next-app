@@ -1,31 +1,27 @@
-'use client';
-
 import React from 'react';
 import styles from './page.module.css';
 import { Grid } from '@mui/material';
-import { useGetRecipes } from './hooks';
 import { Recipe } from './components';
-import CachedIcon from '@mui/icons-material/Cached';
+import { RecipesPayload } from './types';
 
-export default function Home() {
-  const { isLoading, recipesData } = useGetRecipes();
+async function getData() {
+  try {
+    const res = await fetch('https://dummyjson.com/recipes');
+    return res.json();
+  } catch (e) {
+    console.log(e);
+    throw new Error('Failed to fetch data');
+  }
+}
 
-  if (isLoading)
-    return (
-      <CachedIcon
-        sx={{
-          color: '#fff',
-          display: 'block',
-          fontSize: '72px',
-          margin: 'auto',
-        }}
-      />
-    );
+export default async function Home() {
+  const data: RecipesPayload = await getData();
+  const recipesData = data.recipes;
 
   return (
     <main className={styles.main}>
       <Grid container spacing={2}>
-        {recipesData.map(
+        {recipesData?.map(
           ({
             cookTimeMinutes,
             cuisine,

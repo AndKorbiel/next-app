@@ -14,3 +14,8 @@ export type RecipesPayload = {
   skip: number;
   total: number;
 };
+
+export type Product = {
+  name: string;
+  id: string;
+};

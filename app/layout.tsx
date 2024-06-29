@@ -1,7 +1,7 @@
 import './global.css';
 
 import { Navbar, Sidebar } from './components';
-import { AppBar, Box, Container, Grid, styled } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
 
 export const metadata = {
@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
 
           <Container
             maxWidth={'xl'}
-            sx={{ boxShadow: '0 3px 10px white', mt: '90px' }}
+            sx={{ boxShadow: '0 3px 10px white', mt: '60px' }}
             className="main-container"
           >
             <Grid>{children}</Grid>

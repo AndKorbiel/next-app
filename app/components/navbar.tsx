@@ -1,29 +1,23 @@
-'use client';
-
 import * as React from 'react';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-import { AppBar, Box, styled } from '@mui/material';
+import { AppBar, Box } from '@mui/material';
 
 import Link from 'next/link';
 import { routesMap } from '../constants';
 
-const StyledAppBar = styled(AppBar)`
-  z-index: ${({ theme }) => theme.zIndex.drawer + 1};
-`;
-
 export const Navbar = () => {
   return (
-    <StyledAppBar position="fixed">
+    <AppBar position="fixed" sx={{ zIndex: 9999 }}>
       <Toolbar>
         <Typography
           variant="h6"
           component="div"
           sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
         >
-          Next App
+          Recipes Matcher
         </Typography>
 
         <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
@@ -34,6 +28,6 @@ export const Navbar = () => {
           ))}
         </Box>
       </Toolbar>
-    </StyledAppBar>
+    </AppBar>
   );
 };
