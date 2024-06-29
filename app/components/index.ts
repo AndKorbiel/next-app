@@ -1,3 +1,4 @@
 export * from './navbar';
 export * from './sidebar/sidebar';
-export * from './recipe';
+export * from './recipesList';
+export * from './filters';
