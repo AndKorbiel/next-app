@@ -6,12 +6,8 @@ export const routesMap = [
     name: 'Home',
   },
   {
-    path: '/data',
-    name: 'Data',
-  },
-  {
-    path: '/dashboard',
-    name: 'dashboard',
+    path: '/list',
+    name: 'Recipes list',
   },
 ];
 
