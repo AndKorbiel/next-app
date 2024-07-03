@@ -5,20 +5,20 @@ import Box from '@mui/material/Box';
 import { Chip } from '@mui/material';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import {
-  addProductToSelected,
+  removeProductFromSelected,
   selectProducts,
 } from '../../store/productsSlice';
 
-export const AvailableProductsList = () => {
-  const { selectAvailableProducts } = useAppSelector(selectProducts);
+export const SelectedProductsList = () => {
+  const { selectSelectedProducts } = useAppSelector(selectProducts);
   const dipsatch = useAppDispatch();
 
   return (
     <Box>
-      {selectAvailableProducts.map(({ name, id }) => (
+      {selectSelectedProducts.map(({ name, id }) => (
         <Chip
           label={name}
-          onClick={() => dipsatch(addProductToSelected({ id, name }))}
+          onDelete={() => dipsatch(removeProductFromSelected({ id, name }))}
           key={id}
           sx={{
             margin: '0 0.2em 0.2em 0',

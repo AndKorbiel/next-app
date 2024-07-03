@@ -8,6 +8,7 @@ import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import { StyledHeading } from './styledHeading';
 import { AvailableProductsList } from './availableProductsList';
+import { SelectedProductsList } from './selectedProductsList';
 
 const drawerStyles = {
   width: drawerWidth,
@@ -62,6 +63,8 @@ export const Sidebar = () => {
             <ChecklistIcon sx={{ mr: '0.5em' }} />
             Products you have
           </StyledHeading>
+
+          <SelectedProductsList />
         </Container>
       </Drawer>
     </>

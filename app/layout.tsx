@@ -3,6 +3,7 @@ import './global.css';
 import { Navbar, Sidebar } from './components';
 import { Box, Container, Grid } from '@mui/material';
 import React from 'react';
+import StoreProvider from './storeProvider';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,16 +15,18 @@ export default function RootLayout({ children }: { children: JSX.Element }) {
     <html lang="en">
       <body>
         <Box sx={{ display: 'flex' }}>
-          <Navbar />
-          <Sidebar />
+          <StoreProvider>
+            <Navbar />
+            <Sidebar />
 
-          <Container
-            maxWidth={'xl'}
-            sx={{ boxShadow: '0 3px 10px white', mt: '60px' }}
-            className="main-container"
-          >
-            <Grid>{children}</Grid>
-          </Container>
+            <Container
+              maxWidth={'xl'}
+              sx={{ boxShadow: '0 3px 10px white', mt: '60px' }}
+              className="main-container"
+            >
+              <Grid>{children}</Grid>
+            </Container>
+          </StoreProvider>
         </Box>
       </body>
     </html>
