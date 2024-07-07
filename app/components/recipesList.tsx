@@ -1,16 +1,26 @@
-import * as React from 'react';
-import { RecipesPayload } from '../types';
-import { Grid } from '@mui/material';
-import { getData } from '../utils';
-import { Recipe } from './recipe';
+'use client';
 
-export const RecipesList = async () => {
-  const data: RecipesPayload = await getData();
-  const recipesData = data.recipes;
+import React, { useEffect, useState } from 'react';
+import { Recipe as Recipetype } from '../types';
+import { Grid } from '@mui/material';
+import { Recipe } from './recipe';
+import { useAppSelector } from '../store/hooks';
+import { selectFilters } from '../store/filtersSlice';
+import { applyFiltersToRecipes } from '../utils';
+
+export const RecipesList = ({ recipes }: { recipes: Recipetype[] }) => {
+  const { filters } = useAppSelector(selectFilters);
+  const [filteredRecipes, filterRecipes] = useState<Recipetype[]>([]);
+
+  useEffect(() => {
+    const updated = applyFiltersToRecipes({ filters, recipes });
+
+    filterRecipes(updated);
+  }, [recipes, filters]);
 
   return (
     <Grid container spacing={2}>
-      {recipesData.map((recipe) => (
+      {filteredRecipes.map((recipe) => (
         <Recipe recipe={recipe} key={recipe.id} />
       ))}
     </Grid>

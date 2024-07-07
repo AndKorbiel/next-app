@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid } from '@mui/material';
-import { Filters, RecipesList } from './components';
+import { Filters, Recipes } from './components';
 
 export default async function Home() {
   return (
@@ -13,7 +13,7 @@ export default async function Home() {
         <Filters />
       </Grid>
 
-      <RecipesList />
+      <Recipes />
     </main>
   );
 }

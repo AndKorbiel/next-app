@@ -1,4 +1,4 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { Product } from '../types';
 import { initialAvailableProducts } from '../constants';
@@ -49,12 +49,5 @@ export const selectProducts = (state: RootState) => {
     selectSelectedProducts: state.products.selectedProducts,
   };
 };
-export const selectSelectedProducts = (state: RootState) =>
-  state.products.selectedProducts;
-
-export const selectA = createSelector(
-  [selectSelectedProducts],
-  (selectProducts) => selectProducts,
-);
 
 export default productsSlice.reducer;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Drawer from '@mui/material/Drawer';
 import { drawerWidth } from '../../constants';
-import { Button, Container, Divider, TextField } from '@mui/material';
+import { Container, Divider } from '@mui/material';
 
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
@@ -9,6 +9,7 @@ import ChecklistIcon from '@mui/icons-material/Checklist';
 import { StyledHeading } from './styledHeading';
 import { AvailableProductsList } from './availableProductsList';
 import { SelectedProductsList } from './selectedProductsList';
+import { ProductForm } from './productForm';
 
 const drawerStyles = {
   width: drawerWidth,
@@ -44,16 +45,7 @@ export const Sidebar = () => {
             Add new product to the list
           </StyledHeading>
 
-          <TextField
-            variant="standard"
-            placeholder="Type product name..."
-            sx={{
-              height: '28px',
-              padding: '4px 8px',
-              bgcolor: '#ebebeb',
-            }}
-          />
-          <Button variant="contained">Submit</Button>
+          <ProductForm />
 
           <Divider sx={{ borderColor: '#fff', margin: '2em 0' }} />
         </Container>
