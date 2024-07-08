@@ -10,12 +10,12 @@ import {
 } from '../../store/productsSlice';
 
 export const AvailableProductsList = () => {
-  const { selectAvailableProducts } = useAppSelector(selectProducts);
+  const { availableProducts } = useAppSelector(selectProducts);
   const dipsatch = useAppDispatch();
 
   return (
     <Box>
-      {selectAvailableProducts.map(({ name, id }) => (
+      {availableProducts.map(({ name, id }) => (
         <Chip
           label={name}
           onClick={() => dipsatch(addProductToSelected({ id, name }))}

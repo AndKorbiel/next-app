@@ -1,9 +1,10 @@
 import { FiltersState } from '../store/filtersSlice';
-import { Recipe } from '../types';
+import { Product, Recipe } from '../types';
 
 type ApplyFiltersToRecipesProps = {
   filters: FiltersState;
   recipes: Recipe[];
+  selectedProducts: Product[];
 };
 
 export async function getData() {
@@ -16,30 +17,56 @@ export async function getData() {
   }
 }
 
+function matchAvailableProductsToRecipe(
+  range: number,
+  recipes: Recipe[],
+  selectedProducts: Product[],
+) {
+  const filteredRecipes = recipes.filter((recipe) => {
+    const ingredients = recipe.ingredients;
+    const products = selectedProducts.map((pr) => pr.name);
+
+    const numberOfMatchingProducts = ingredients.filter((ind) =>
+      products.includes(ind),
+    ).length;
+
+    if (ingredients.length - numberOfMatchingProducts <= range) return recipe;
+  });
+
+  return filteredRecipes;
+}
+
 export function applyFiltersToRecipes({
   filters,
   recipes,
+  selectedProducts,
 }: ApplyFiltersToRecipesProps) {
-  const { category, tags, title } = filters;
-  let updated: Recipe[] = recipes;
+  const { category, range, tags, title } = filters;
+  let matchedRecipes: Recipe[] = recipes;
 
   if (title) {
-    updated = recipes.filter((recipe) =>
+    matchedRecipes = recipes.filter((recipe) =>
       recipe.name.toLowerCase().includes(title.toLowerCase()),
     );
   }
 
   if (category !== '') {
-    updated = updated.filter(
+    matchedRecipes = matchedRecipes.filter(
       (recipe) => recipe.cuisine.toLowerCase() === category.toLowerCase(),
     );
   }
 
   if (tags.length) {
-    updated = updated.filter((recipe) =>
+    matchedRecipes = matchedRecipes.filter((recipe) =>
       tags.every((tag) => recipe.tags.includes(tag)),
     );
   }
 
-  return updated;
+  matchedRecipes = matchAvailableProductsToRecipe(
+    range,
+    matchedRecipes,
+    selectedProducts,
+  );
+
+  return matchedRecipes;
 }

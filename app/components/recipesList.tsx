@@ -7,16 +7,22 @@ import { Recipe } from './recipe';
 import { useAppSelector } from '../store/hooks';
 import { selectFilters } from '../store/filtersSlice';
 import { applyFiltersToRecipes } from '../utils';
+import { selectProducts } from '../store/productsSlice';
 
 export const RecipesList = ({ recipes }: { recipes: Recipetype[] }) => {
   const { filters } = useAppSelector(selectFilters);
+  const { selectedProducts } = useAppSelector(selectProducts);
   const [filteredRecipes, filterRecipes] = useState<Recipetype[]>([]);
 
   useEffect(() => {
-    const updated = applyFiltersToRecipes({ filters, recipes });
+    const filetedRecipeList = applyFiltersToRecipes({
+      filters,
+      recipes,
+      selectedProducts,
+    });
 
-    filterRecipes(updated);
-  }, [recipes, filters]);
+    filterRecipes(filetedRecipeList);
+  }, [recipes, filters, selectedProducts]);
 
   return (
     <Grid container spacing={2}>

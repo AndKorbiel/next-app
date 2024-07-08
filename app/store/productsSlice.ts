@@ -45,8 +45,8 @@ export const {
 
 export const selectProducts = (state: RootState) => {
   return {
-    selectAvailableProducts: state.products.availableProducts,
-    selectSelectedProducts: state.products.selectedProducts,
+    availableProducts: state.products.availableProducts,
+    selectedProducts: state.products.selectedProducts,
   };
 };
 

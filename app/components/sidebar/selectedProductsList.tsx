@@ -10,12 +10,12 @@ import {
 } from '../../store/productsSlice';
 
 export const SelectedProductsList = () => {
-  const { selectSelectedProducts } = useAppSelector(selectProducts);
+  const { selectedProducts } = useAppSelector(selectProducts);
   const dipsatch = useAppDispatch();
 
   return (
     <Box>
-      {selectSelectedProducts.map(({ name, id }) => (
+      {selectedProducts.map(({ name, id }) => (
         <Chip
           label={name}
           onDelete={() => dipsatch(removeProductFromSelected({ id, name }))}
