@@ -26,7 +26,8 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx",
-    "app/error.tsx"
+    "app/error.tsx",
+    "app/utils/utils.spec.js"
   ],
   "exclude": ["node_modules"]
 }
